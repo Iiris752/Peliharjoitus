@@ -1,4 +1,4 @@
-using System.Numerics;
+using NUnit.Framework;
 using UnityEngine;
 
 public class LierioLiikutinFysiikka : MonoBehaviour
@@ -21,6 +21,9 @@ public class LierioLiikutinFysiikka : MonoBehaviour
     [SerializeField]
     float nopeus = 10f;
 
+    [SerializeField]
+    float kiertonopeus = 10f;
+
 
     void Start()
     {
@@ -42,20 +45,23 @@ public class LierioLiikutinFysiikka : MonoBehaviour
     {
         if (wNappiPainettu == true)
         {
+            //w-napilla liikkuu eteenpäin
             fysiikkaVartalo.AddRelativeForce(Vector3.forward * nopeus);
         }
+            //pyörähtää vastapäivään y-akselin ympäri, kun käyttäjä painaa a
+        if (aNappiPainettu == true)
+        {
+            fysiikkaVartalo.AddRelativeTorque(Vector3.down * kiertonopeus);
+        }
+            //liikkuu taaksepäin
         if (sNappiPainettu == true)
         {
             fysiikkaVartalo.AddRelativeForce(Vector3.back * nopeus);
         }
-        if (aNappiPainettu == true)
-        {
-            fysiikkaVartalo.AddRelativeForce(Vector3.left * nopeus);
-        }
+            //pyörähtää myötäpäivään y-akselin ympäri, kun käyttäjä painaa d
         if (dNappiPainettu == true)
         {
-            fysiikkaVartalo.AddRelativeForce(Vector3.right * nopeus);
-
-        }
+            fysiikkaVartalo.AddRelativeTorque(Vector3.up * kiertonopeus);
+        }   
     }
 }
