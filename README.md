@@ -1,12 +1,12 @@
-##Unity-harjoituspeli
+Unity-harjoituspeli
 
 Tässä on Unitylla toteutettu harjoituspeli, jota kehitän osana peliohjelmoinnin kurssia. Projekti on ensimmäisiä omia pelejäni Unityssä, joten sen tarkoituksena on demonstroida oppimiani perustaitoja peliohjelmoinnista, tekoälystä, ohjauksesta ja animaatioista. Peli on tällä hetkellä keskeneräinen, koska kurssi etenee yhä. Päivitän projektia sitä mukaa, kun opin lisää Unityn keskeisistä työskentelytavoista.
 
-##Pelin idea
+Pelin idea
 
 Pelaaja ohjaa hahmoa point-and-click -tyylisesti osoittamalla hiirellä paikkaa, johon hahmo liikkuu. Pelaajalla on käytössään jousiase, jota voi liikuttaa näppäimistöllä. Pelaaja voi ampua nuolia välilyöntiä painamalla. Kentässä liikkuu AI-ohjattu kummitus, joka käyttäytyy dynaamisesti pelaajan toiminnan perusteella.
 
-##Tekoälyn toiminta
+Tekoälyn toiminta
 
 Pelin kummitus hyödyntää Unityn NavMesh-navigointia. Tekoäly toimii seuraavasti:
 - Kummitus partioi kahden pisteen välillä.
@@ -14,7 +14,7 @@ Pelin kummitus hyödyntää Unityn NavMesh-navigointia. Tekoäly toimii seuraava
 - Kun kummitus saavuttaa pelaajan, se hyökkää. Hyökkäyksen yhteydessä kuuluu äänimerkki.
 - Kummitukselle on toteutettu animoitu hahmo AI-generoidulla animaatiolla.
 
-##Toteutetut tekniset ominaisuudet
+Toteutetut tekniset ominaisuudet
 
 - Unity C# -skriptit
 - Point-and-click -ohjaus
@@ -26,7 +26,7 @@ Pelin kummitus hyödyntää Unityn NavMesh-navigointia. Tekoäly toimii seuraava
 - Ääniefektien soittaminen hyökkäyksessä
 - AI-generoidut animaatiot kummitukselle
 
-##Projektin nykytila
+Projektin nykytila
 
 Projekti on harjoitus- ja oppimiskäytössä. Sen tavoitteena on opetella:
 - Unityn peruskäyttöä
