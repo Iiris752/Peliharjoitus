@@ -1,6 +1,6 @@
 Unity-harjoituspeli
 
-Tässä on Unitylla toteutettu harjoituspeli, jota kehitän osana peliohjelmoinnin kurssia. Projekti on ensimmäisiä omia pelejäni Unityssä, joten sen tarkoituksena on demonstroida oppimiani perustaitoja peliohjelmoinnista, tekoälystä, ohjauksesta ja animaatioista. Peli on tällä hetkellä keskeneräinen, koska kurssi etenee yhä. Päivitän projektia sitä mukaa, kun opin lisää Unityn keskeisistä työskentelytavoista.
+Tässä on Unitylla toteutettu harjoituspeli, jota kehitän osana peliohjelmoinnin kurssia. Projekti on ensimmäisiä omia pelejäni Unityssä, joten sen tarkoituksena on demonstroida oppimiani perustaitoja peliohjelmoinnista, tekoälystä, ohjauksesta ja animaatioista. Peli on tällä hetkellä keskeneräinen.
 
 Pelin idea
 
