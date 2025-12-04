@@ -3,6 +3,8 @@ using UnityEngine.AI;
 
 public class PointNClick : MonoBehaviour
 {
+    [SerializeField]
+    int m_pelaajanHealth = 25;
     NavMeshAgent polunEtsija;
 
     //ammuntamekaniikka
@@ -94,4 +96,9 @@ public class PointNClick : MonoBehaviour
         }
     }    
     
+    //Getteri muuttujan m_pelaajanHealth saamiseksi HaamunAivot scriptin käyttöön:
+    public int HaePelaajanHealth()
+    {
+        return m_pelaajanHealth;
+    }
 }

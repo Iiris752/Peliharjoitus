@@ -26,6 +26,10 @@ public class HaamunAivot : MonoBehaviour
     NavMeshAgent m_haamunNavigaatio;
     AudioSource m_haamunAudio;
 
+    Animator m_haamunAnimaatiot;
+
+    ParticleSystem m_haamunHyokkaysPartikkeli;
+
     [SerializeField]
     GameObject m_alkuPiste;
     [SerializeField]
@@ -47,6 +51,8 @@ public class HaamunAivot : MonoBehaviour
 
         m_pelaaja = GameObject.Find("PelaajaHahmo");
         m_haamunAudio = GetComponent<AudioSource>();
+        m_haamunAnimaatiot = GetComponent<Animator>();
+        m_haamunHyokkaysPartikkeli = GetComponentInChildren<ParticleSystem>();
     }
 
     // Update is called once per frame
@@ -89,6 +95,11 @@ public class HaamunAivot : MonoBehaviour
 
     void Idle()
     {
+        //asetetaan tilan alkuvaatimukset
+        m_haamunAnimaatiot.SetBool("HaamuLiikkuu", false);
+        m_haamunAnimaatiot.SetBool("HaamuHyokkaa", false);
+        m_haamunNavigaatio.speed = 3.5f;
+        
         //lasketaan aikaa
         m_alkuAika += Time.deltaTime;
         //jos aikaa on kulunut 3 sekuntia, vaihdetaan tilaa partiointiin
@@ -100,6 +111,11 @@ public class HaamunAivot : MonoBehaviour
 
     void Partio()
     {
+        //tilan alkuvaatimukset:
+        m_haamunAnimaatiot.SetBool("HaamuLiikkuu", true);
+        m_haamunAnimaatiot.SetBool("HaamuHyokkaa", false);
+        m_haamunNavigaatio.speed = 3.5f;
+        
         //ensimmäisellä kerralla asetetaan kohteeksi alkupiste
         if (m_kohde == null)
         {
@@ -138,6 +154,11 @@ public class HaamunAivot : MonoBehaviour
 
     void SeuraaPelaajaa()
     {
+        //tilan alkuvaatimukset:
+        m_haamunAnimaatiot.SetBool("HaamuLiikkuu", true);
+        m_haamunAnimaatiot.SetBool("HaamuHyokkaa", false);
+        m_haamunNavigaatio.speed = 1.5f;
+
         m_alkuAika = m_alkuAika+Time.deltaTime;
 
         if(m_alkuAika > 1f)
@@ -148,22 +169,50 @@ public class HaamunAivot : MonoBehaviour
         }
 
         float etaisyysPelaajaan = Vector3.Distance(m_pelaaja.transform.position, transform.position);
-        if (etaisyysPelaajaan < 2f)
+        if (etaisyysPelaajaan < 3f)
         {
             m_haamunTilakoneenTila = HaamuliininTilakone.Hyokkaa;
+        }
+        if(etaisyysPelaajaan > 8f)
+        {
+            m_haamunTilakoneenTila = HaamuliininTilakone.Partiointi;
         }
     }
 
     void Hyokkaa()
     {
+        //tilan alkuvaatimukset:
+        m_haamunAnimaatiot.SetBool("HaamuLiikkuu", true);
+        m_haamunAnimaatiot.SetBool("HaamuHyokkaa", true);
+        m_haamunNavigaatio.speed = 1.5f;
+
         //hyökkää tilassa haamu katsoo pelaajaa
         transform.LookAt(m_pelaaja.transform);
-        if (!m_haamunAudio.isPlaying) m_haamunAudio.Play();
+    
+        //tarkastetaan onko pelaajalla healthia jäljellä?
+        //haetaan m_pelaaja Gameobjektista scriptit PointNClick käyttäen GetComponent palvelua
+        PointNClick pelaajanScripti = m_pelaaja.GetComponent<PointNClick>();
+        int pelaajanHealthTallaHetkella = pelaajanScripti.HaePelaajanHealth();
+        if (pelaajanHealthTallaHetkella <= 0)
+        {
+            Debug.Log("Viholliset voitti");
+        }
 
+        //tarkastetaan onko etäisyys pelaajaan pitempi kuin 2 yksikköä
+        float etaisyysPelaajaan = Vector3.Distance(m_pelaaja.transform.position, transform.position);
+        if (etaisyysPelaajaan > 4f)
+        {
+            m_haamunTilakoneenTila = HaamuliininTilakone.SeuraaPelaajaa;
+            m_haamunHyokkaysPartikkeli.Clear();
+            m_haamunHyokkaysPartikkeli.Stop();
+        }
     }
 
-    void VihollisetVoittaneet()
+    //tätä metodia kutsutaan haamun attack animaation sisältä, framelta 17 käyttäen eventtiä
+    public void HaamuAntaaLamaa()
     {
-
+        Debug.Log("Haamu läimii");
+        if (!m_haamunAudio.isPlaying) m_haamunAudio.Play();
+        m_haamunHyokkaysPartikkeli.Play();
     }
 }

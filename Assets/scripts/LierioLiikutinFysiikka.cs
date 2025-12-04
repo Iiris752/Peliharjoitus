@@ -64,4 +64,5 @@ public class LierioLiikutinFysiikka : MonoBehaviour
             fysiikkaVartalo.AddRelativeTorque(Vector3.up * kiertonopeus);
         }   
     }
+
 }
