@@ -1,19 +1,37 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # MysteeriSeikkailu
+=======
+Unity-harjoituspeli
+>>>>>>> 0a4979b858089e14572df2d8600ba320ed1a36c7
 
+Peli on vielä kesken :)! Tämä on Unitylla toteutettu harjoituspeli, jota kehitän osana peliohjelmoinnin kurssia. Projekti on ensimmäisiä omia pelejäni Unityssä, joten sen tarkoituksena on demonstroida oppimiani perustaitoja peliohjelmoinnista, AI-hahmoista, ohjauksesta ja animaatioista. Peli on tosiaan tällä hetkellä keskeneräinen.
 
+Pelin idea
 
-## Getting started
+Pelaaja ohjaa hahmoa point-and-click -tyylisesti osoittamalla hiirellä paikkaa, johon hahmo liikkuu. Pelaajalla on käytössään jousiase, jota voi liikuttaa näppäimistöllä. Pelaaja voi ampua nuolia välilyöntiä painamalla. Kentässä liikkuu AI-ohjattu kummitus, joka käyttäytyy pelaajan toiminnan perusteella.
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+Kummituksen AI:n toiminta
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+Pelin kummitus hyödyntää Unityn NavMesh-navigointia. AI toimii seuraavasti:
+- Kummitus partioi kahden pisteen välillä.
+- Jos pelaajahahmo tulee riittävän lähelle, kummitus alkaa seurata pelaajaa.
+- Kun kummitus saavuttaa pelaajan, se hyökkää. Hyökkäyksen yhteydessä kuuluu äänimerkki.
+- Kummitus liikkuu animoidusti
 
-## Add your files
+Teknisiä piirteitä:
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
+- C#
+- Point-and-click
+- Jousen suuntaaminen
+- Nuolten ampuminen ja niiden katoaminen kentässä
+- NavMesh
+- AI: partiointi, pelaajan seuraaminen, hyökkäys
+- Etäisyys- ja triggeröintilogiikka
+- Ääniefekti
+- Animoitu liikkuminen
 
+<<<<<<< HEAD
 ```
 cd existing_repo
 git remote add origin https://peke.plab.fi/ihaavist/mysteeriseikkailu.git
@@ -95,3 +113,10 @@ If you have run out of energy or time for your project, put a note at the top of
 =======
 # Peliharjoitus
 >>>>>>> d677460e593cc5e780ebf87f10f82b8df77e2e2d
+=======
+Peliin tullaan lisäämään myöhemmin esim
+- osumadetektiikka
+- elämämekaniikka
+- lisää vihollislogiikkaa
+- visuaalisia parannuksia
+>>>>>>> 0a4979b858089e14572df2d8600ba320ed1a36c7
