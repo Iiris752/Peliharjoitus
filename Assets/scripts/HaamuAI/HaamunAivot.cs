@@ -16,6 +16,8 @@ enum HaamuliininTilakone
 
 public class HaamunAivot : MonoBehaviour
 {
+    [SerializeField]
+    int m_haamunHealth = 5;
 
     [SerializeField]
     HaamuliininTilakone m_haamunTilakoneenTila = HaamuliininTilakone.Idle;
@@ -214,5 +216,10 @@ public class HaamunAivot : MonoBehaviour
         Debug.Log("Haamu läimii");
         if (!m_haamunAudio.isPlaying) m_haamunAudio.Play();
         m_haamunHyokkaysPartikkeli.Play();
+        //tehdään pelaajalle 1 yksikkö vahinkoa:
+        PointNClick pelaajanScripti = m_pelaaja.GetComponent<PointNClick>();
+        pelaajanScripti.TeePelaajalleVahinkoaYksiYksikko();
     }
+
+    
 }

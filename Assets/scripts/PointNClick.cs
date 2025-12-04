@@ -101,4 +101,11 @@ public class PointNClick : MonoBehaviour
     {
         return m_pelaajanHealth;
     }
+
+    //tämä metodi poistaa 1 pelaajan healtheista. Tätä metodia kutsuu ainoastaan HaamunAivot scripti
+    public void TeePelaajalleVahinkoaYksiYksikko()
+    {
+        m_pelaajanHealth = m_pelaajanHealth - 1;
+        Debug.Log("Pelaajalle vahinkoa " + m_pelaajanHealth);
+    }
 }
