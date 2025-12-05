@@ -3,7 +3,7 @@ MysteeriSeikkailu
 Unity-harjoituspeli
 
 Peli on vielä kesken.
-Unitylla toteutettu harjoituspeli, jota kehitän osana peliohjelmoinnin kurssia.
+Unitylla toteutettu harjoituspeli, jota kehitetään osana peliohjelmoinnin kurssia.
 Projekti on ensimmäisiä omia pelejäni Unityssä, joten sen tarkoituksena on harjoitella perustaitoja peliohjelmoinnista: AI-hahmoista, ohjauksesta ja animaatioista.
 
 Pelin idea
