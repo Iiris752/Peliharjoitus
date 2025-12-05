@@ -19,6 +19,9 @@ public class PointNClick : MonoBehaviour
     [SerializeField]
     float varsijousenKaantoNopeus = 0.5f;
 
+    [SerializeField]
+    private GameOverManager m_gameOverManager;
+
     void Start()
     {
         polunEtsija = GetComponent<NavMeshAgent>();
@@ -107,5 +110,13 @@ public class PointNClick : MonoBehaviour
     {
         m_pelaajanHealth = m_pelaajanHealth - 1;
         Debug.Log("Pelaajalle vahinkoa " + m_pelaajanHealth);
+
+        if (m_pelaajanHealth <= 0)
+        {
+            if (m_gameOverManager != null)
+                m_gameOverManager.ShowGameOver("Haamu voitti!");
+            else    
+                Debug.Log("Gameover manager puuttuu");
+        }
     }
 }

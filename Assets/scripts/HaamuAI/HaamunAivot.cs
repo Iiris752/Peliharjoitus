@@ -20,6 +20,9 @@ public class HaamunAivot : MonoBehaviour
     int m_haamunHealth = 5;
 
     [SerializeField]
+    private GameOverManager m_gameOverManager;
+
+    [SerializeField]
     HaamuliininTilakone m_haamunTilakoneenTila = HaamuliininTilakone.Idle;
     
     //luokan muuttuja merkitään hungarian notaation mukaisesti etuliitteellä m_
@@ -214,12 +217,30 @@ public class HaamunAivot : MonoBehaviour
     public void HaamuAntaaLamaa()
     {
         Debug.Log("Haamu läimii");
+
         if (!m_haamunAudio.isPlaying) m_haamunAudio.Play();
         m_haamunHyokkaysPartikkeli.Play();
+
         //tehdään pelaajalle 1 yksikkö vahinkoa:
         PointNClick pelaajanScripti = m_pelaaja.GetComponent<PointNClick>();
         pelaajanScripti.TeePelaajalleVahinkoaYksiYksikko();
     }
 
-    
+    public int HaeHaamunHealth()
+    {
+        return m_haamunHealth;
+    }
+    public void OtaVahinkoa()
+    {
+        m_haamunHealth = m_haamunHealth - 1;
+        Debug.Log("haamulle vahinkoa " + m_haamunHealth);
+
+        if (m_haamunHealth <= 0)
+        {
+            if (m_gameOverManager != null)
+                m_gameOverManager.ShowGameOver("Pelaaja voitti!");
+            else    
+                Debug.Log("Gameover manager puuttuu");
+        }
+    }
 }

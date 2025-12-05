@@ -46,20 +46,43 @@ public class Nuoli : MonoBehaviour
 
     }
 
-    //OSUMIEN KÄSITTELY
-
+    //Osumat:
     void OnCollisionEnter(Collision osumaKohta)
     {
+        Debug.Log($"Nuoli osui: {osumaKohta.collider.name}");
+
+        // haamuosuma
+        if (osumaKohta.gameObject.name.Contains("Haamu"))
+        {
+            Debug.Log("Haamuun osui!");
+            var haamuliini = osumaKohta.collider.GetComponentInParent<HaamunAivot>();
+            if (haamuliini != null)
+            {
+                haamuliini.OtaVahinkoa();
+            }
+            // pysäytetään ja poistetaan nuoli, ettei tule tuplahittejä:
+            nuolenFysiikka.isKinematic = true;
+            Destroy(gameObject, 0.05f);
+            return;
+        }
+
+        //puuhun, maaliin osuminen:
         if (osumaKohta.gameObject.name.Contains("Tree") || osumaKohta.gameObject.name.Contains("Maali"))
         {
-            //pysäytetään nuoli
+            // pysäytetään nuoli
             nuolenFysiikka.isKinematic = true;
-            //tuhotaan kohde, jos se on maali. Muita kohteita ei tuhota
+
+            // tuhota kohde, jos se on maali
             if (osumaKohta.gameObject.name.Contains("Maali"))
             {
                 Destroy(osumaKohta.gameObject, 2f);
             }
+
+            //poistetaan nuoli
+            Destroy(gameObject, 0.05f);
         }
     }
+
+
 
 }
